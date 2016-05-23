@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.frank.dao.UserDao">
+
+    <resultMap type="User" id="UserResult">
+        <result property="userId" column="USER_ID"/>
+        <result property="userName" column="USER_USERNAME"/>
+        <result property="password" column="USER_PASSWORD"/>
+        <result property="roleId" column="ROLE_ID"/>
+        <result property="roleName" column="ROLE_ROLENAME"/>
+        <result property="permissionId" column="PERMISSION_ID"/>
+        <result property="getPermissionName" column="PERMISSION_NAME"/>
+    </resultMap>
+
+    <select id="queryToLogin" parameterType="String" resultMap="UserResult">
+        select u.USER_ID,
+        u.USER_USERNAME,
+        u.USER_PASSWORD
+        from tbl_user u
+        where  u.USER_USERNAME=#{userName};
+    </select>
+
+    <select id="queryPermissions" parameterType="String" resultMap="UserResult">
+		select u.USER_ID,
+            u.USER_USERNAME,
+            u.USER_PASSWORD,
+            r.ROLE_ID,
+            r.ROLE_NAME,
+            p.PERMISSION_ID,
+            p.PERMISSION_NAME
+		 from tbl_user u,
+		 tbl_role_user ru,
+		 tbl_role r,
+		 tbl_permission_role pr,
+		 tbl_permission p
+		 where u.USER_ID = ru.USER_ID
+		 AND ru.ROLE_ID = r.ROLE_ID
+		 AND r.ROLE_ID = pr.ROLE_ID
+		 AND pr.PERMISSION_ID = p.PERMISSION_ID
+		 AND u.USER_USERNAME=#{userName};
+	</select>
+
+
+
+</mapper> 
