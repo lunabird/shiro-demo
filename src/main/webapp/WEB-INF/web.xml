@@ -93,7 +93,7 @@
 
 
 
-    <error-page>
+    <!-- <error-page>
         <error-code>405</error-code>
         <location>/error/405.ftl</location>
     </error-page>
@@ -101,9 +101,9 @@
         <error-code>404</error-code>
         <location>/error/404.ftl</location>
     </error-page>
-    <!-- 未捕获的错误，同样可指定其它异常类，或自定义异常类 -->
+    未捕获的错误，同样可指定其它异常类，或自定义异常类
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/error/500.ftl</location>
-    </error-page>
+    </error-page> -->
 </web-app>  

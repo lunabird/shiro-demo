@@ -16,24 +16,27 @@
     <!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
     <mvc:annotation-driven/>
 
-    <!--&lt;!&ndash; 配置SpringMVC的视图解析器 &ndash;&gt;
+    <!-- &lt;!&ndash; 配置SpringMVC的视图解析器 &ndash;&gt;
     &lt;!&ndash; 其viewClass属性的默认值就是org.springframework.web.servlet.view.JstlView &ndash;&gt;
+     --> 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>-->
+        <property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+    </bean>
 
     <!--引入freemarker -->
-    <import resource="spring-freemarker.xml"/>
+    <!-- <import resource="spring-freemarker.xml"/> -->
 
     <!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
-    <mvc:view-controller path="/" view-name="forward:/login.ftl"/>
-
+    <!-- <mvc:view-controller path="/" view-name="forward:/login.ftl"/> -->
+	<mvc:view-controller path="/" view-name="forward:/login.jsp"/>
+	
     <!-- 由于web.xml中设置是：由SpringMVC拦截所有请求,于是在读取静态资源文件的时候就会受到影响(说白了就是读不到) -->
     <!-- 经过下面的配置，该标签的作用就是：所有页面中引用"/js/**"的资源，都会从"/resources/js/"里面进行查找 -->
     <!-- 我们可以访问http://IP:8080/xxx/js/my.css和http://IP:8080/xxx/resources/js/my.css对比出来 -->
-    <mvc:resources mapping="/js/**" location="/resources/js/"/>
-    <mvc:resources mapping="/css/**" location="/resources/css/"/>
+    <!-- <mvc:resources mapping="/js/**" location="/resources/js/"/>
+    <mvc:resources mapping="/css/**" location="/resources/css/"/> -->
+    <mvc:resources mapping="/css/**" location="/css/" />
     <mvc:resources mapping="/WEB-INF/**" location="/WEB-INF/"/>
 
     <!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
@@ -77,6 +80,7 @@
         <!-- authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter -->
         <property name="filterChainDefinitions">
             <value>
+            	/home/** = authc
                 /mydemo/login=anon
                 /mydemo/getVerifyCodeImage=anon
                 /main**=authc

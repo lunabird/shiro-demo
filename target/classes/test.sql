@@ -1,22 +1,22 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : test
-Source Server Version : 50528
+Source Server         : hp
+Source Server Version : 50520
 Source Host           : localhost:3306
 Source Database       : test
 
 Target Server Type    : MYSQL
-Target Server Version : 50528
+Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2016-02-27 14:33:21
+Date: 2016-05-23 22:09:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `tbl_permission`
+-- Table structure for tbl_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_permission`;
 CREATE TABLE `tbl_permission` (
@@ -24,18 +24,19 @@ CREATE TABLE `tbl_permission` (
   `PERMISSION_NAME` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`PERMISSION_ID`),
   UNIQUE KEY `PERMISSION_NAME_UNIQUE` (`PERMISSION_NAME`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tbl_permission
 -- ----------------------------
+INSERT INTO `tbl_permission` VALUES ('5', '*');
 INSERT INTO `tbl_permission` VALUES ('1', 'CREATE');
 INSERT INTO `tbl_permission` VALUES ('3', 'DELETE');
-INSERT INTO `tbl_permission` VALUES ('2', 'QUERY');
+INSERT INTO `tbl_permission` VALUES ('2', 'QUERY,CREATE');
 INSERT INTO `tbl_permission` VALUES ('4', 'UPDATE');
 
 -- ----------------------------
--- Table structure for `tbl_permission_role`
+-- Table structure for tbl_permission_role
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_permission_role`;
 CREATE TABLE `tbl_permission_role` (
@@ -51,10 +52,11 @@ INSERT INTO `tbl_permission_role` VALUES ('1', '1');
 INSERT INTO `tbl_permission_role` VALUES ('1', '2');
 INSERT INTO `tbl_permission_role` VALUES ('1', '3');
 INSERT INTO `tbl_permission_role` VALUES ('1', '4');
+INSERT INTO `tbl_permission_role` VALUES ('1', '5');
 INSERT INTO `tbl_permission_role` VALUES ('2', '2');
 
 -- ----------------------------
--- Table structure for `tbl_role`
+-- Table structure for tbl_role
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_role`;
 CREATE TABLE `tbl_role` (
@@ -71,7 +73,7 @@ INSERT INTO `tbl_role` VALUES ('1', 'ADMIN');
 INSERT INTO `tbl_role` VALUES ('2', 'USER');
 
 -- ----------------------------
--- Table structure for `tbl_role_user`
+-- Table structure for tbl_role_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_role_user`;
 CREATE TABLE `tbl_role_user` (
@@ -88,7 +90,7 @@ INSERT INTO `tbl_role_user` VALUES ('2', '1');
 INSERT INTO `tbl_role_user` VALUES ('2', '2');
 
 -- ----------------------------
--- Table structure for `tbl_user`
+-- Table structure for tbl_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_user`;
 CREATE TABLE `tbl_user` (
@@ -102,5 +104,5 @@ CREATE TABLE `tbl_user` (
 -- ----------------------------
 -- Records of tbl_user
 -- ----------------------------
-INSERT INTO `tbl_user` VALUES ('1', 'yingzhuo', '1234');
+INSERT INTO `tbl_user` VALUES ('1', 'huangpeng', '123456');
 INSERT INTO `tbl_user` VALUES ('2', 'lee', '123456');
