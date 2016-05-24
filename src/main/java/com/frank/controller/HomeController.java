@@ -48,7 +48,7 @@ public class HomeController {
 				model.addAttribute("greetingMessage",protectedService.getGreetingMessage(name));
 			}
 		} catch(AuthenticationException e) {
-			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nerrorMessage"+ e.getMessage());
+//			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nerrorMessage"+ e.getMessage());
 			model.addAttribute("errorMessage", "catch AuthenticationException");
 		}
 		

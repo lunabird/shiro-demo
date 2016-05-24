@@ -24,11 +24,22 @@
            <div class="table_row">
               <div>Password:</div><div><input name="password" value="" type="password"/></div>
            </div>
+           
+           <div class="table_row">
+              <div>验证码:</div>
+              <div> <input name="verifyCode" value="" type="text"/></div>
+              <img id="verifyCodeImage" onclick="reloadVerifyCode()" src="${pageContext.request.contextPath}/getVerifyCodeImage"/>
+           </div>
+    
+    
+    
            <div class="table_row">
               <div>
                   <input name="submit" value="Login" type="submit"/>
               </div>
            </div>
+           
+           
        </div>
        </form>   
     </div>

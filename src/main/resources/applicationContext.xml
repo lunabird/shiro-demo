@@ -81,20 +81,6 @@
         <property name="filterChainDefinitions">
             <value>
             	/home/** = authc
-                /mydemo/login=anon
-                /mydemo/getVerifyCodeImage=anon
-                /main**=authc
-                /create**=authc,perms[create]
-                /query**=authc,perms[query]
-                /update**=authc,perms[update]
-                /delete**=authc,perms[delete]
-
-
-                /js/** = anon
-                /css/** = anon
-                /WEB-INF/** = anon
-                /**=authc
-
             </value>
         </property>
     </bean>

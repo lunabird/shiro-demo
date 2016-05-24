@@ -1,108 +1,96 @@
 /*
-Navicat MySQL Data Transfer
+SQLyog v10.2 
+MySQL - 5.0.67-community-nt : Database - test
+*********************************************************************
+*/
 
-Source Server         : hp
-Source Server Version : 50520
-Source Host           : localhost:3306
-Source Database       : test
+/*!40101 SET NAMES utf8 */;
 
-Target Server Type    : MYSQL
-Target Server Version : 50520
-File Encoding         : 65001
+/*!40101 SET SQL_MODE=''*/;
 
-Date: 2016-05-23 22:09:41
-*/
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`test` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-SET FOREIGN_KEY_CHECKS=0;
+USE `test`;
 
--- ----------------------------
--- Table structure for tbl_permission
--- ----------------------------
+/*Table structure for table `tbl_permission` */
+
 DROP TABLE IF EXISTS `tbl_permission`;
+
 CREATE TABLE `tbl_permission` (
-  `PERMISSION_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `PERMISSION_NAME` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`PERMISSION_ID`),
+  `PERMISSION_ID` int(11) NOT NULL auto_increment,
+  `PERMISSION_NAME` varchar(45) default NULL,
+  PRIMARY KEY  (`PERMISSION_ID`),
   UNIQUE KEY `PERMISSION_NAME_UNIQUE` (`PERMISSION_NAME`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tbl_permission
--- ----------------------------
-INSERT INTO `tbl_permission` VALUES ('5', '*');
-INSERT INTO `tbl_permission` VALUES ('1', 'CREATE');
-INSERT INTO `tbl_permission` VALUES ('3', 'DELETE');
-INSERT INTO `tbl_permission` VALUES ('2', 'QUERY,CREATE');
-INSERT INTO `tbl_permission` VALUES ('4', 'UPDATE');
+/*Data for the table `tbl_permission` */
 
--- ----------------------------
--- Table structure for tbl_permission_role
--- ----------------------------
+insert  into `tbl_permission`(`PERMISSION_ID`,`PERMISSION_NAME`) values (5,'*'),(3,'calculator:*'),(4,'filesystem:read:home'),(2,'system:read:time'),(1,'user-roles:*');
+
+/*Table structure for table `tbl_permission_role` */
+
 DROP TABLE IF EXISTS `tbl_permission_role`;
+
 CREATE TABLE `tbl_permission_role` (
   `ROLE_ID` int(11) NOT NULL,
   `PERMISSION_ID` int(11) NOT NULL,
-  PRIMARY KEY (`ROLE_ID`,`PERMISSION_ID`)
+  PRIMARY KEY  (`ROLE_ID`,`PERMISSION_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tbl_permission_role
--- ----------------------------
-INSERT INTO `tbl_permission_role` VALUES ('1', '1');
-INSERT INTO `tbl_permission_role` VALUES ('1', '2');
-INSERT INTO `tbl_permission_role` VALUES ('1', '3');
-INSERT INTO `tbl_permission_role` VALUES ('1', '4');
-INSERT INTO `tbl_permission_role` VALUES ('1', '5');
-INSERT INTO `tbl_permission_role` VALUES ('2', '2');
+/*Data for the table `tbl_permission_role` */
 
--- ----------------------------
--- Table structure for tbl_role
--- ----------------------------
+insert  into `tbl_permission_role`(`ROLE_ID`,`PERMISSION_ID`) values (1,5),(2,2);
+
+/*Table structure for table `tbl_role` */
+
 DROP TABLE IF EXISTS `tbl_role`;
+
 CREATE TABLE `tbl_role` (
-  `ROLE_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ROLE_NAME` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`ROLE_ID`),
+  `ROLE_ID` int(11) NOT NULL auto_increment,
+  `ROLE_NAME` varchar(45) default NULL,
+  PRIMARY KEY  (`ROLE_ID`),
   UNIQUE KEY `ROLE_NAME_UNIQUE` (`ROLE_NAME`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tbl_role
--- ----------------------------
-INSERT INTO `tbl_role` VALUES ('1', 'ADMIN');
-INSERT INTO `tbl_role` VALUES ('2', 'USER');
+/*Data for the table `tbl_role` */
 
--- ----------------------------
--- Table structure for tbl_role_user
--- ----------------------------
+insert  into `tbl_role`(`ROLE_ID`,`ROLE_NAME`) values (1,'ADMIN'),(2,'USER');
+
+/*Table structure for table `tbl_role_user` */
+
 DROP TABLE IF EXISTS `tbl_role_user`;
+
 CREATE TABLE `tbl_role_user` (
   `ROLE_ID` int(11) NOT NULL,
   `USER_ID` int(11) NOT NULL,
-  PRIMARY KEY (`ROLE_ID`,`USER_ID`)
+  PRIMARY KEY  (`ROLE_ID`,`USER_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tbl_role_user
--- ----------------------------
-INSERT INTO `tbl_role_user` VALUES ('1', '1');
-INSERT INTO `tbl_role_user` VALUES ('2', '1');
-INSERT INTO `tbl_role_user` VALUES ('2', '2');
+/*Data for the table `tbl_role_user` */
 
--- ----------------------------
--- Table structure for tbl_user
--- ----------------------------
+insert  into `tbl_role_user`(`ROLE_ID`,`USER_ID`) values (1,1),(2,1),(2,2);
+
+/*Table structure for table `tbl_user` */
+
 DROP TABLE IF EXISTS `tbl_user`;
+
 CREATE TABLE `tbl_user` (
-  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_ID` int(11) NOT NULL auto_increment,
   `USER_USERNAME` varchar(45) NOT NULL,
   `USER_PASSWORD` char(32) NOT NULL,
-  PRIMARY KEY (`USER_ID`),
+  PRIMARY KEY  (`USER_ID`),
   UNIQUE KEY `USER_USERNAME_UNIQUE` (`USER_USERNAME`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tbl_user
--- ----------------------------
-INSERT INTO `tbl_user` VALUES ('1', 'huangpeng', '123456');
-INSERT INTO `tbl_user` VALUES ('2', 'lee', '123456');
+/*Data for the table `tbl_user` */
+
+insert  into `tbl_user`(`USER_ID`,`USER_USERNAME`,`USER_PASSWORD`) values (1,'huangpeng','123456'),(2,'lee','123456');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

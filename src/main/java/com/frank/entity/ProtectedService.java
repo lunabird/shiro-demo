@@ -16,7 +16,7 @@ public class ProtectedService {
 	
 //	@RequiresPermissions("user-roles:read")
 	public List<String> getUsers() {
-		if(SecurityUtils.getSubject().isPermitted("Query")){
+		if(SecurityUtils.getSubject().isPermitted("user-roles:*")){
 			return USERS;
 		}
 		throw new AuthenticationException();
@@ -24,7 +24,7 @@ public class ProtectedService {
 	
 //	@RequiresPermissions("user-roles:read")
 	public List<String> getRoles() {
-		if(SecurityUtils.getSubject().isPermitted("Query")){
+		if(SecurityUtils.getSubject().isPermitted("user-roles:*")){
 			return ROLES;
 		}
 		throw new AuthenticationException();
