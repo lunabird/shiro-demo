@@ -8,13 +8,14 @@ import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 
 public class ProtectedService {
 	private static final List<String> USERS = Arrays.asList("huangpeng","lee");
 	
 	private static final List<String> ROLES = Arrays.asList("admin","user");
 	
-//	@RequiresPermissions("user-roles:read")
+	@RequiresPermissions("user-roles:*")
 	public List<String> getUsers() {
 		if(SecurityUtils.getSubject().isPermitted("user-roles:*")){
 			return USERS;
@@ -22,7 +23,7 @@ public class ProtectedService {
 		throw new AuthenticationException();
 	}
 	
-//	@RequiresPermissions("user-roles:read")
+	@RequiresPermissions("user-roles:*")
 	public List<String> getRoles() {
 		if(SecurityUtils.getSubject().isPermitted("user-roles:*")){
 			return ROLES;
@@ -30,7 +31,7 @@ public class ProtectedService {
 		throw new AuthenticationException();
 	}
 	
-//	@RequiresPermissions("system:read:time")
+	@RequiresPermissions("system:read:time")
 	public Date getSystemTime() {
 		if(SecurityUtils.getSubject().isPermitted("system:read:time")){
 			return Calendar.getInstance().getTime();
@@ -38,7 +39,7 @@ public class ProtectedService {
 		throw new AuthenticationException();
 	}
 	
-//	@RequiresPermissions("calculator:add")
+	@RequiresPermissions("calculator:add")
 	public int sum(int a, int b) {
 		if(SecurityUtils.getSubject().isPermitted("calculator:add")){
 			return a+b;
@@ -46,7 +47,7 @@ public class ProtectedService {
 		throw new AuthenticationException();
 	}
 	
-//	@RequiresPermissions("calculator:subtract")
+	@RequiresPermissions("calculator:subtract")
 	public int diff(int a, int b) {
 		if(SecurityUtils.getSubject().isPermitted("calculator:subtract")){
 			return a-b;
@@ -54,7 +55,7 @@ public class ProtectedService {
 		throw new AuthenticationException();
 	}
 	
-//	@RequiresPermissions("filesystem:read:home")
+	@RequiresPermissions("filesystem:read:home")
 	public List<String> getHomeFiles() {
 		File homeDir = new File(System.getProperty("user.home"));
 		if(SecurityUtils.getSubject().isPermitted("filesystem:read:home")){
